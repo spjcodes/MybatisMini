@@ -1,9 +1,9 @@
 package cn.jiayeli;
 
-import cn.jiayeli.mybatisMini.util.dao.ConfigMapper;
-import cn.jiayeli.mybatisMini.util.model.ConfigModel;
 import cn.jiayeli.mybatisMini.util.MiniMapper;
 import cn.jiayeli.mybatisMini.util.MybatisMini;
+import cn.jiayeli.mybatisMini.util.dao.ConfigMapper;
+import cn.jiayeli.mybatisMini.util.model.ConfigModel;
 import com.mysql.cj.util.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;

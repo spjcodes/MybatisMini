@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.jiayeli</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>mybatisMini-core</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
