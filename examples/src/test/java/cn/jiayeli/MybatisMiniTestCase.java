@@ -1,19 +1,56 @@
 package cn.jiayeli;
 
-import cn.jiayeli.mybatisMini.util.MiniMapper;
-import cn.jiayeli.mybatisMini.util.MybatisMini;
-import cn.jiayeli.mybatisMini.util.dao.ConfigMapper;
-import cn.jiayeli.mybatisMini.util.model.ConfigModel;
+import cn.jiayeli.mybatisMini.core.MiniMapper;
+import cn.jiayeli.mybatisMini.core.MybatisMini;
+import cn.jiayeli.mybatisMini.example.dao.ConfigMapper;
+import cn.jiayeli.mybatisMini.example.model.ConfigModel;
 import com.mysql.cj.util.StringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
 import java.lang.reflect.AnnotatedType;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 
+import static cn.jiayeli.mybatisMini.core.ReflectUtils.printGenericTypeInfo;
+
 public class MybatisMiniTestCase {
+
+    @Test
+    public void t() throws ClassNotFoundException {
+        HashMap<String, List<String>> types = printGenericTypeInfo(Class.forName("cn.jiayeli.mybatisMini.example.dao.ConfigMapper"));
+        System.out.println(types);
+    }
+    @Test
+    public void test() throws ClassNotFoundException {
+            // 获取 ConfigMapper 的泛型父接口
+//            Type[] genericInterfaces = ConfigMapper.class.getGenericInterfaces();
+            Type[] genericInterfaces = Class.forName("cn.jiayeli.mybatisMini.example.dao.ConfigMapper").getGenericInterfaces();
+
+            for (Type genericInterface : genericInterfaces) {
+                // 我们只关心它是 ParameterizedType 类型的，因为它带有泛型信息
+                if (genericInterface instanceof ParameterizedType) {
+                    ParameterizedType parameterizedType = (ParameterizedType) genericInterface;
+
+                    // 获取此接口的原始类型
+                    Type rawType = parameterizedType.getRawType();
+                    System.out.println("继承的接口原始类型：" + rawType); // MiniMapper.class
+
+                    // 获取此接口的泛型参数
+                    Type[] typeArguments = parameterizedType.getActualTypeArguments();
+                    System.out.println("泛型参数：");
+                    for (Type typeArg : typeArguments) {
+                        System.out.println("  " + typeArg.getTypeName());
+                    }
+                }
+            }
+    }
+
+
     @Test
     public void appTestCase() {
 
@@ -38,8 +75,9 @@ public class MybatisMiniTestCase {
     }
 
     @Test
-    public void withArgsTestCase() {
-        ConfigModel username = MybatisMini.<ConfigMapper, ConfigModel>queryObject(configMapper -> configMapper.queryConfigByKey("username"));
+    public void withArgsTestCase() throws ClassNotFoundException {
+        String userName  = "username";
+        ConfigModel username = MybatisMini.<ConfigMapper, ConfigModel>queryObject(configMapper -> configMapper.queryConfigByKey(userName));
         System.out.println(username);
     }
 
@@ -62,7 +100,7 @@ public class MybatisMiniTestCase {
 
     @Test
     public void rft() throws ClassNotFoundException {
-        String clazzName  = "cn.jiayeli.mybatisMini.util.dao.ConfigMapper";
+        String clazzName  = "cn.jiayeli.mybatisMini.example.dao.ConfigMapper";
         String annotatedInterfaces = getMybatisMiniMapperClass(clazzName);
         System.out.println(annotatedInterfaces);
     }

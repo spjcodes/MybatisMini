@@ -1,4 +1,4 @@
-package cn.jiayeli.mybatisMini.util.model;
+package cn.jiayeli.mybatisMini.example.model;
 
 import lombok.Data;
 

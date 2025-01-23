@@ -1,6 +1,6 @@
 package cn.jiayeli;
 
-import cn.jiayeli.mybatisMini.util.MiniMapper;
+import cn.jiayeli.mybatisMini.core.MiniMapper;
 import com.mysql.cj.util.StringUtils;
 import org.junit.Test;
 
@@ -29,8 +29,8 @@ public class MybatisMiniTestCase {
     @Test
     public void rft() throws ClassNotFoundException {
         String clazzName  = "cn.jiayeli.mybatisMini.util.dao.ConfigMapper";
-        String annotatedInterfaces = getMybatisMiniMapperClass(clazzName);
-        System.out.println(annotatedInterfaces);
+      /*  String annotatedInterfaces = getMybatisMiniMapperClass(clazzName);
+        System.out.println(annotatedInterfaces);*/
     }
 
     private String getMybatisMiniMapperClass(String clazzName) throws ClassNotFoundException {

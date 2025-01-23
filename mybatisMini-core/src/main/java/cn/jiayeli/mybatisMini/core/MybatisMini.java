@@ -1,4 +1,4 @@
-package cn.jiayeli.mybatisMini.util;
+package cn.jiayeli.mybatisMini.core;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -80,7 +80,7 @@ public class MybatisMini {
             // 调用方法
             return function.apply(mapper);
         } catch (Exception e) {
-            e.printStackTrace();
+           log.error(e.getMessage(), e);
             throw new RuntimeException("查询发生错误！");
         }
     }

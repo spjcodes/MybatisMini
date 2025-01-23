@@ -1,4 +1,4 @@
-package cn.jiayeli.mybatisMini.util;
+package cn.jiayeli.mybatisMini.core;
 
 import java.io.Serializable;
 

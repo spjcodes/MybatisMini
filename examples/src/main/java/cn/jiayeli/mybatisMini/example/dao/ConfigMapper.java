@@ -1,7 +1,7 @@
-package cn.jiayeli.mybatisMini.util.dao;
+package cn.jiayeli.mybatisMini.example.dao;
 
-import cn.jiayeli.mybatisMini.util.model.ConfigModel;
-import cn.jiayeli.mybatisMini.util.MiniMapper;
+import cn.jiayeli.mybatisMini.example.model.ConfigModel;
+import cn.jiayeli.mybatisMini.core.MiniMapper;
 
 import java.util.List;
 
